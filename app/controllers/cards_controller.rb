@@ -9,7 +9,8 @@ class CardsController < ApplicationController
       card: params[:card_token] # 登録しようとしているカード情報
       )
 
-      card = Card.new(# トークン化されたカード情報を保存する
+      # トークン化されたカード情報を保存する
+      card = Card.new(
         card_token: params[:card_token], # カードトークン
         customer_token: customer.id, # 顧客トークン
         user_id: current_user.id # ログインしているユーザー
@@ -19,5 +20,6 @@ class CardsController < ApplicationController
       else
         redirect_to "new"
       end
+      # //トークン化されたカード情報を保存する
   end
 end
