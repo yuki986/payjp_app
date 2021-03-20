@@ -1,8 +1,16 @@
 <%= link_to 'マイページへ行く', user_path(current_user) %>
 <div class="conent">
   <% @items.each do |item| %>
-  <p>商品名:<%= item.name %></p>
-  <p>値段:<%= item.price %>円</p>
-  <%= link_to '購入する', order_item_path(item.id), method: :post %>
+    <p>商品名:<%= item.name %></p>
+    <p>値段:<%= item.price %>円</p>
+    
+    <%# もしitem_orderテーブルに商品の情報が保存されていたら %>
+    <% if item.item_order != nil %>
+      <div class='sold-out'>
+        <b>Sold Out!!</b>
+      </div>
+    <% else %>
+      <%= link_to '購入する', order_item_path(item.id), method: :post %>
+    <% end %>
   <% end %>
 </div>
