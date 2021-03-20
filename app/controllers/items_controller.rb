@@ -11,4 +11,9 @@ class ItemsController < ApplicationController
     ItemOrder.create(item_id: params[:id]) # 商品のid情報を「item_id」として保存する
     redirect_to root_path
   end
+
+  private
+  def find_item
+    @item = Item.find(params[:id])
+  end
 end
